@@ -3,6 +3,9 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
 import Logo from "./partials/Logo";
+import { auth } from "../../configs/firebase";
+
+import { useLocation } from "react-router-dom";
 
 const propTypes = {
   navPosition: PropTypes.string,
@@ -33,6 +36,8 @@ const Header = ({
 
   const nav = useRef(null);
   const hamburger = useRef(null);
+
+  const location = useLocation();
 
   useEffect(() => {
     isActive && openMenu();
@@ -78,6 +83,11 @@ const Header = ({
     className
   );
 
+  const logout = () => {
+    auth.signOut();
+    closeMenu();
+  };
+
   return (
     <header {...props} className={classes}>
       <div className="container">
@@ -116,23 +126,56 @@ const Header = ({
                         BLOG
                       </Link>
                     </li>
-                    <li>
-                      <Link to="#0" onClick={closeMenu}>
-                        SOBRE
-                      </Link>
-                    </li>
+                    <Link to="#0" onClick={closeMenu}>
+                      SOBRE
+                    </Link>
+                    <li></li>
                   </ul>
-                  {!hideSignin && (
+                  {!hideSignin ? (
                     <ul className="list-reset header-nav-right">
+                      <li className="text-xs">
+                        <Link to="/entrar" onClick={closeMenu}>
+                          ENTRAR
+                        </Link>
+                      </li>
                       <li>
                         <Link
-                          to="#0"
+                          to="/cadastro"
                           className="button button-primary button-wide-mobile button-sm"
                           onClick={closeMenu}
                         >
                           CADASTRAR-SE
                         </Link>
                       </li>
+                    </ul>
+                  ) : (
+                    <ul className="list-reset header-nav-right">
+                      <li className="text-xs">
+                        <Link to="#" onClick={logout}>
+                          SAIR
+                        </Link>
+                      </li>
+                      {location.pathname !== "/user" ? (
+                        <li>
+                          <Link
+                            to="/user"
+                            className="button button-primary button-wide-mobile button-sm"
+                            onClick={closeMenu}
+                          >
+                            Acessar o sistema
+                          </Link>
+                        </li>
+                      ) : (
+                        <li>
+                          <Link
+                            to="/questionario"
+                            className="button button-primary button-wide-mobile button-sm"
+                            onClick={closeMenu}
+                          >
+                            Refazer questionário
+                          </Link>
+                        </li>
+                      )}
                     </ul>
                   )}
                 </div>

@@ -49,7 +49,10 @@ const Cta = ({
             <h3 className="m-0">A MUDANÇA SÓ DEPENDE DE VOCÊ!</h3>
           </div>
           <div className="cta-action">
-            <Link to="#0" className="button button-wide-mobile button-sm">
+            <Link
+              to="/cadastro"
+              className="button button-wide-mobile button-sm"
+            >
               CADASTRAR-SE
             </Link>
           </div>
