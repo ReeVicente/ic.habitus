@@ -12,6 +12,8 @@ import Button from "../../components/elements/Button";
 import { useHistory } from "react-router-dom";
 import { Alert } from "../../helpers/Alert";
 
+import Video from "react-responsive-video";
+
 const schema = yup.object().shape({
   water: yup.string().required("Por favor, selecione uma opção"),
   workPause: yup.string().required("Por favor, selecione uma opção"),
@@ -55,7 +57,7 @@ function FormPage() {
         title: "Questionário salvo com sucesso",
         type: "success",
       });
-      history.push("/user")
+      history.push("/user");
     } catch (err) {
       Alert({
         title: "Erro ao salvar formulário",
@@ -71,7 +73,12 @@ function FormPage() {
     <div style={{ marginTop: 130 }}>
       <h1 className="text-center">Triagem de dados</h1>
       <Container>
-        <div>
+        <div className="d-flex align-items-center flex-column">
+          <Video
+            mp4={require("../../assets/videos/posture.mp4")}
+            style={{ maxWidth: "100%", width: "600px", marginBottom: 50}}
+            objectFit={`contain`}
+          />
           <Form onSubmit={handleSubmit(onSubmit)}>
             <Form.Group className="flex-column">
               <label>Você bebe de dois a três litros de água por dia?</label>

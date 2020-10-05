@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import ReactHowler from "react-howler";
 import Button from "../../components/elements/Button";
-
+import Video from "react-responsive-video";
 import { auth } from "../../configs/firebase";
 import { getCurrentUser } from "../../services/user";
 
@@ -36,31 +36,37 @@ function UserPage() {
       id: 0,
       slug: "water",
       message: "Beba água",
+      file: require("../../assets/videos/water.mp4"),
     },
     {
       id: 1,
       slug: "posture",
       message: "Corrija sua postura",
+      file: require("../../assets/videos/posture.mp4"),
     },
     {
       id: 2,
       slug: "workPause",
       message: "Faça uma pausa no seu serviço",
+      file: require("../../assets/videos/workPause.mp4"),
     },
     {
       id: 3,
       slug: "stress",
       message: "Medite por alguns minutos",
+      file: require("../../assets/videos/stress.mp4"),
     },
     {
       id: 4,
       slug: "pain",
       message: "Comece sua auto-massagem",
+      file: require("../../assets/videos/pain.mp4"),
     },
     {
       id: 5,
       slug: "sedentary",
       message: "Pratique alguma atividade física",
+      file: require("../../assets/videos/sedentary.mp4"),
     },
   ];
 
@@ -167,7 +173,15 @@ function UserPage() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="mt-5" className="App-logo" alt="logo" />
+        {!minutes && !seconds ? (
+          <Video
+            mp4={parsedInterventionList[currentIntervention].file}
+            style={{ maxWidth: "100%", width: "400px", marginTop: 120 }}
+            objectFit={`contain`}
+          />
+        ) : (
+          <img src={logo} className="mt-5" className="App-logo" alt="logo" />
+        )}
         <h3>Olá, {authUser?.name.split(" ")[0]}</h3>
         {isStarted && (
           <>
