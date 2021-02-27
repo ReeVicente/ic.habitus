@@ -7,12 +7,12 @@ import { getCurrentUser } from "../../services/user";
 
 import { useHistory } from "react-router-dom";
 
-import logo from "./logo.svg";
+import logo from "./logo.png";
 import "./style.css";
 
 function UserPage() {
-  const baseMinutes = 0;
-  const baseSeconds = 3;
+  const baseMinutes = 29;
+  const baseSeconds = 59;
 
   const myInterval = useRef();
 
@@ -171,7 +171,7 @@ function UserPage() {
   };
 
   return (
-    <div className="App">
+    <div className="App mt-4">
       <header className="App-header">
         {!minutes && !seconds ? (
           <Video

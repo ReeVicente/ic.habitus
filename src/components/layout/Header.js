@@ -122,13 +122,10 @@ const Header = ({
                     )}
                   >
                     <li>
-                      <Link to="#0" onClick={closeMenu}>
+                      <a target="_blank" rel="noopener noreferrer" href="https://blog.habitus.app.br/" onClick={closeMenu}>
                         BLOG
-                      </Link>
+                      </a>
                     </li>
-                    <Link to="#0" onClick={closeMenu}>
-                      SOBRE
-                    </Link>
                     <li></li>
                   </ul>
                   {!hideSignin ? (

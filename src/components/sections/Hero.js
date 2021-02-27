@@ -69,7 +69,7 @@ const Hero = ({
                     tag="a"
                     color="primary"
                     wideMobile
-                    href="https://cruip.com/"
+                    href="/cadastro"
                   >
                     COMEÇAR AGORA
                   </Button>
